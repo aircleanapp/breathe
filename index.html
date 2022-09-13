@@ -111,9 +111,9 @@
 						<script type="text/javascript">var submitted=false;</script>
 		                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none" onload="if(submitted){$('#fthx').html('<h2 class=\'text-white\'> Your pledge was recorded!</h2>' );$('#femail').val('');$('#fname').val('');}"></iframe>
 		                <form action="https://docs.google.com/forms/d/e/1FAIpQLScTGwUFFJ1QeljzWRIytdHF_SxFdpcYJrQ0HvlcxUYOGsqi1w/formResponse" method="POST" id="mG61Hd" target="hidden_iframe" onsubmit="submitted=true;" class="subscribe_form relative">
-<!-- <input id="fname" required type="text" placeholder="full name" name="entry.2005620554"><input id="ftext" type="text" placeholder="your question/feedback/suggestion" width="30" name="entry.839337160"><textarea id="pushToken" class="js-subscription-json hid" type="text" name="entry.1984977102"></textarea> -->
+<!-- <input id="fname" required type="text" placeholder="full name" name="entry.2005620554"><input id="ftext" type="text" placeholder="your question/feedback/suggestion" width="30" name="entry.839337160"> --><textarea id="pushToken" class="js-subscription-json hid" type="text" name="entry.1984977102"></textarea> 
                             <div class="input-group d-flex flex-row">
-                                <input required name="entry.1045781291"  id="femail" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                <input required name="entry.1045781291"  id="femail" placeholder="Enter email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" required="" type="email">
                                 <input id="ftel" class="hid" type="text" value="pledge from breathe.tk" name="entry.1166974658">
                                 <button class="ml-10 primary_btn yellow_btn btn sub-btn rounded" type="submit" onclick="submitted=true">PLEDGE</button>		<div id="fthx"></div>
                             </div>									
@@ -863,5 +863,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <i 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="js/gmaps.min.js"></script>
 	<script src="js/theme.js"></script>
+    <script type='text/javascript'>
+         $(document).ready(function() {
+            $("form").submit(function(e){
+                if ( $('#pushToken').val().length > 0 ) {
+                    console.log('submit intercepted: honeypot='+$('#pushToken').val());
+                    e.preventDefault(e);        
+                }
+            });
+        });
+    </script>    
 </body>
 </html>
